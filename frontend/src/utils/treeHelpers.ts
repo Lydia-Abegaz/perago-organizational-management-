@@ -28,7 +28,7 @@ export const flattenTree = (positions: Position[], level = 0): FlatPosition[] =>
 /**
  * Find a node in the tree by its ID
  */
-export const findNodeById = (positions: Position[], id: number): Position | null => {
+export const findNodeById = (positions: Position[], id: string): Position | null => {
   for (const position of positions) {
     if (position.id === id) {
       return position;
@@ -64,8 +64,8 @@ export const countNodes = (positions: Position[]): number => {
 /**
  * Get all descendant IDs of a node (to prevent circular references)
  */
-export const getDescendantIds = (position: Position): number[] => {
-  const ids: number[] = [];
+export const getDescendantIds = (position: Position): string[] => {
+  const ids: string[] = [];
   
   if (position.children && position.children.length > 0) {
     for (const child of position.children) {
@@ -80,7 +80,7 @@ export const getDescendantIds = (position: Position): number[] => {
 /**
  * Remove a node from the tree by ID
  */
-export const removeNodeById = (positions: Position[], id: number): Position[] => {
+export const removeNodeById = (positions: Position[], id: string): Position[] => {
   return positions
     .filter(position => position.id !== id)
     .map(position => ({
@@ -92,7 +92,7 @@ export const removeNodeById = (positions: Position[], id: number): Position[] =>
 /**
  * Update a node in the tree by ID
  */
-export const updateNodeById = (positions: Position[], id: number, updates: Partial<Position>): Position[] => {
+export const updateNodeById = (positions: Position[], id: string, updates: Partial<Position>): Position[] => {
   return positions.map(position => {
     if (position.id === id) {
       return { ...position, ...updates };

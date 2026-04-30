@@ -13,14 +13,19 @@ import { IconEdit, IconTrash, IconChevronRight, IconChevronDown } from '@tabler/
 import { Position } from '../types/position';
 import Link from 'next/link';
 
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
+
 interface TreeNodeProps {
   position: Position;
   level: number;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 const TreeNode: React.FC<TreeNodeProps> = ({ position, level, onDelete }) => {
   const [expanded, setExpanded] = useState(true);
+  const { user } = useSelector((state: RootState) => state.auth);
+  const isAdmin = user?.role === 'admin';
   const hasChildren = position.children && position.children.length > 0;
 
   return (
@@ -68,29 +73,33 @@ const TreeNode: React.FC<TreeNodeProps> = ({ position, level, onDelete }) => {
           </Group>
           
           <Group>
-            <ActionIcon
-              component={Link}
-              href={`/position/${position.id}`}
-              bg="rgba(0, 232, 255, 0.1)"
-              c="#00E8FF"
-              variant="light"
-              size="lg"
-              radius="xl"
-              style={{ transition: 'all 0.2s', border: '1px solid rgba(0,232,255,0.2)' }}
-            >
-              <IconEdit size={16} />
-            </ActionIcon>
-            <ActionIcon
-              bg="rgba(255, 0, 60, 0.1)"
-              c="#ff003c"
-              variant="light"
-              size="lg"
-              radius="xl"
-              onClick={() => onDelete(position.id)}
-              style={{ transition: 'all 0.2s', border: '1px solid rgba(255,0,60,0.2)' }}
-            >
-              <IconTrash size={16} />
-            </ActionIcon>
+            {isAdmin && (
+              <>
+                <ActionIcon
+                  component={Link}
+                  href={`/position/${position.id}`}
+                  bg="rgba(0, 232, 255, 0.1)"
+                  c="#00E8FF"
+                  variant="light"
+                  size="lg"
+                  radius="xl"
+                  style={{ transition: 'all 0.2s', border: '1px solid rgba(0,232,255,0.2)' }}
+                >
+                  <IconEdit size={16} />
+                </ActionIcon>
+                <ActionIcon
+                  bg="rgba(255, 0, 60, 0.1)"
+                  c="#ff003c"
+                  variant="light"
+                  size="lg"
+                  radius="xl"
+                  onClick={() => onDelete(position.id)}
+                  style={{ transition: 'all 0.2s', border: '1px solid rgba(255,0,60,0.2)' }}
+                >
+                  <IconTrash size={16} />
+                </ActionIcon>
+              </>
+            )}
           </Group>
         </Group>
       </Paper>
@@ -115,7 +124,7 @@ const TreeNode: React.FC<TreeNodeProps> = ({ position, level, onDelete }) => {
 
 interface TreeViewProps {
   positions: Position[];
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 export const TreeView: React.FC<TreeViewProps> = ({ positions, onDelete }) => {

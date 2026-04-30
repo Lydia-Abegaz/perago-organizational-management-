@@ -19,7 +19,7 @@ import { flattenTree, getDescendantIds } from '../utils/treeHelpers';
 const positionSchema = yup.object().shape({
   name: yup.string().required('Position name is required').min(2, 'Name must be at least 2 characters'),
   description: yup.string().optional(),
-  parentId: yup.number().nullable().optional(),
+  parentId: yup.string().nullable().optional(),
 });
 
 interface PositionFormProps {
@@ -35,7 +35,7 @@ interface PositionFormProps {
 type FormData = {
   name: string;
   description?: string;
-  parentId?: number | null;
+  parentId?: string | null;
 };
 
 export const PositionForm: React.FC<PositionFormProps> = ({
@@ -84,8 +84,14 @@ export const PositionForm: React.FC<PositionFormProps> = ({
       )
     : flatPositions;
 
+  const rootExists = positions.some(pos => !pos.parentId);
+  
   const parentOptions = [
-    { value: '', label: 'No Parent (CEO)', disabled: false },
+    { 
+      value: '', 
+      label: rootExists && (!isEdit || initialData?.parentId) ? 'No Parent (Already Exists)' : 'No Parent (CEO)', 
+      disabled: !!(rootExists && (!isEdit || initialData?.parentId))
+    },
     ...availableParents.map((position) => ({
       value: position.id.toString(),
       label: position.displayName,
@@ -154,7 +160,7 @@ export const PositionForm: React.FC<PositionFormProps> = ({
             placeholder="Select parent position"
             data={parentOptions}
             value={parentId?.toString() || ''}
-            onChange={(value) => setValue('parentId', value === '' ? null : Number(value))}
+            onChange={(value) => setValue('parentId', value === '' ? null : value)}
             error={errors.parentId?.message}
             clearable
             searchable

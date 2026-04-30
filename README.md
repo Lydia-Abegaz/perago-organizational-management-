@@ -1,24 +1,41 @@
 # Perago Information System
-## Perago Organizational Management - Full Stack Application
+## Perago Organizational Management - Enterprise Full Stack Application
 
-[![Next.js](https://img.shields.io/badge/Next.js-14+-black.svg)](https://nextjs.org/)
-[![NestJS](https://img.shields.io/badge/NestJS-10.0.0-red.svg)](https://nestjs.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0.0-blue.svg)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-14.1.4-black.svg)](https://nextjs.org/)
+[![NestJS](https://img.shields.io/badge/NestJS-9.0.0-red.svg)](https://nestjs.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)](https://www.typescriptlang.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-blue.svg)](https://www.postgresql.org/)
 [![JWT](https://img.shields.io/badge/JWT-Authentication-green.svg)](https://jwt.io/)
+[![Mantine](https://img.shields.io/badge/Mantine-7.7.0-purple.svg)](https://mantine.dev/)
+[![Redux](https://img.shields.io/badge/Redux-Toolkit-2.11.2-blue.svg)](https://redux-toolkit.js.org/)
 
-A **complete full-stack enterprise application** for managing organizational hierarchies with modern React frontend and secure NestJS backend.
+A **production-ready enterprise application** for managing organizational hierarchies with advanced business logic, comprehensive security, and modern architecture patterns.
 
-## Project Overview
+## 🎯 Project Overview & Business Value
 
-This is a comprehensive organizational management system featuring:
+This is a **comprehensive organizational management system** designed to solve real-world enterprise challenges in hierarchical structure management. The system addresses critical business needs:
 
-- **Secure Authentication** with JWT tokens and role-based access
-- **Hierarchical Position Management** with advanced business logic
-- **Modern React Frontend** with Next.js, Tailwind CSS, and Mantine UI
-- **Enterprise Backend** with NestJS, PostgreSQL, and TypeORM
-- **Comprehensive Testing** with unit and E2E test coverage
-- **Professional Documentation** and setup guides
+### **Core Business Problems Solved**
+- **Organizational Complexity**: Manage complex reporting structures across departments
+- **Data Integrity**: Prevent circular references and maintain hierarchy consistency
+- **Access Control**: Role-based permissions for different user types
+- **Audit Compliance**: Complete change tracking for compliance requirements
+- **Scalability**: Handle organizations from startups to enterprises with thousands of employees
+
+### **Enterprise-Grade Features**
+- **Advanced Authentication**: JWT tokens with passport 0.6.0, bcrypt 6.0.0 hashing
+- **Hierarchical Validation**: Circular reference prevention, single root validation, depth limits
+- **Audit Trail**: User tracking, timestamps, soft delete functionality
+- **Modern UI/UX**: Mantine UI 7.7.0 with dark theme, responsive design
+- **Performance Optimization**: TreeRepository, closure table pattern, optimized queries
+- **Professional Documentation**: Interactive Swagger API docs at `/api`
+
+### **Technical Excellence**
+- **Type Safety**: Full TypeScript 5 implementation across frontend and backend
+- **Modern Architecture**: Clean separation of concerns, dependency injection
+- **Security Best Practices**: Multi-layer security, input validation, SQL injection prevention
+- **Testing Strategy**: Unit tests, E2E tests, comprehensive coverage
+- **Developer Experience**: Hot reload, comprehensive error handling, environment management
 
 ## Project Structure
 

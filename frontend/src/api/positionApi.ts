@@ -9,13 +9,13 @@ export const positionApi = {
   },
 
   // Get a single position by ID
-  getPositionById: async (id: number): Promise<Position> => {
+  getPositionById: async (id: string): Promise<Position> => {
     const response = await api.get(`/positions/${id}`);
     return response.data;
   },
 
   // Get all children of a specific position
-  getPositionChildren: async (parentId: number): Promise<Position[]> => {
+  getPositionChildren: async (parentId: string): Promise<Position[]> => {
     const response = await api.get(`/positions/${parentId}/children`);
     return response.data;
   },
@@ -27,13 +27,13 @@ export const positionApi = {
   },
 
   // Update an existing position
-  updatePosition: async (id: number, position: UpdatePositionDto): Promise<Position> => {
+  updatePosition: async (id: string, position: UpdatePositionDto): Promise<Position> => {
     const response = await api.put(`/positions/${id}`, position);
     return response.data;
   },
 
   // Delete a position
-  deletePosition: async (id: number): Promise<void> => {
+  deletePosition: async (id: string): Promise<void> => {
     await api.delete(`/positions/${id}`);
   },
 };

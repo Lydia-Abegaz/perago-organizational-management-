@@ -12,12 +12,14 @@ export const HomePage: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const { positions, loading, error } = useSelector((state: RootState) => state.positions);
+  const { user } = useSelector((state: RootState) => state.auth);
+  const isAdmin = user?.role === 'admin';
 
   useEffect(() => {
     dispatch(fetchPositionsTree());
   }, [dispatch]);
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string) => {
     modals.openConfirmModal({
       title: 'Delete Position',
       children: (
@@ -44,23 +46,25 @@ export const HomePage: React.FC = () => {
           <Title order={1} c="#FFFFFF" style={{ fontWeight: 800, letterSpacing: '-0.5px' }}>
             Employee Architecture
           </Title>
-          <Button 
-            onClick={() => router.push('/create')}
-            bg="#00E8FF"
-            c="#101014"
-            size="md"
-            radius="xl"
-            style={{ 
-              fontWeight: 800,
-              boxShadow: '0 0 20px rgba(0, 232, 255, 0.3)',
-              border: 'none',
-              transition: 'all 0.2s ease'
-            }}
-            className="hover:scale-105 active:scale-95 hover:bg-[#26e4ff]"
-            leftSection={<span style={{ fontSize: '20px' }}>+</span>}
-          >
-            New Position
-          </Button>
+          {isAdmin && (
+            <Button 
+              onClick={() => router.push('/create')}
+              bg="#00E8FF"
+              c="#101014"
+              size="md"
+              radius="xl"
+              style={{ 
+                fontWeight: 800,
+                boxShadow: '0 0 20px rgba(0, 232, 255, 0.3)',
+                border: 'none',
+                transition: 'all 0.2s ease'
+              }}
+              className="hover:scale-105 active:scale-95 hover:bg-[#26e4ff]"
+              leftSection={<span style={{ fontSize: '20px' }}>+</span>}
+            >
+              New Position
+            </Button>
+          )}
         </Group>
 
         {error && (

@@ -1,30 +1,31 @@
-import type { Metadata } from "next";
+import { ColorSchemeScript } from '@mantine/core';
 import { Inter } from "next/font/google";
+import { Providers } from '../components/Providers';
 import "./globals.css";
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 
-import { ColorSchemeScript } from '@mantine/core';
-
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Perago Employee Hierarchy",
-  description: "Employee hierarchy management system",
+export const metadata = {
+  title: "Perago Organizational Management",
+  description: "Modern employee hierarchy and organizational management system",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-    <head>
-        <ColorSchemeScript />
+      <head>
+        <ColorSchemeScript defaultColorScheme="dark" />
       </head>
       <body className={inter.className}>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

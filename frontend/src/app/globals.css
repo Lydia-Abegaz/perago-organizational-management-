@@ -16,4 +16,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  
+  .user-menu-button:hover {
+    background-color: #1e1e20 !important;
+  }
 }

@@ -1,28 +1,28 @@
 export interface Position {
-  id: number;
+  id: string;
   name: string;
   description: string;
-  parentId: number | null;
+  parentId: string | null;
   children?: Position[];
 }
 
 export interface CreatePositionDto {
   name: string;
   description?: string;
-  parentId?: number | null;
+  parentId?: string | null;
 }
 
 export interface UpdatePositionDto {
   name?: string;
   description?: string;
-  parentId?: number | null;
+  parentId?: string | null;
 }
 
 export interface FlatPosition {
-  id: number;
+  id: string;
   name: string;
   description: string;
-  parentId: number | null;
+  parentId: string | null;
   level: number;
   displayName: string;
 }

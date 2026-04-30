@@ -32,7 +32,7 @@ export const fetchPositionsTree = createAsyncThunk(
 
 export const fetchPositionById = createAsyncThunk(
   'positions/fetchById',
-  async (id: number, { rejectWithValue }) => {
+  async (id: string, { rejectWithValue }) => {
     try {
       const response = await positionApi.getPositionById(id);
       return response;
@@ -56,7 +56,7 @@ export const createPosition = createAsyncThunk(
 
 export const updatePosition = createAsyncThunk(
   'positions/update',
-  async ({ id, position }: { id: number; position: UpdatePositionDto }, { rejectWithValue }) => {
+  async ({ id, position }: { id: string; position: UpdatePositionDto }, { rejectWithValue }) => {
     try {
       const response = await positionApi.updatePosition(id, position);
       return response;
@@ -68,7 +68,7 @@ export const updatePosition = createAsyncThunk(
 
 export const deletePosition = createAsyncThunk(
   'positions/delete',
-  async (id: number, { rejectWithValue }) => {
+  async (id: string, { rejectWithValue }) => {
     try {
       await positionApi.deletePosition(id);
       return id;
@@ -159,7 +159,7 @@ const positionSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(deletePosition.fulfilled, (state, action: PayloadAction<number>) => {
+      .addCase(deletePosition.fulfilled, (state, action: PayloadAction<string>) => {
         state.loading = false;
         state.positions = removeNodeById(state.positions, action.payload);
         if (state.currentPosition?.id === action.payload) {

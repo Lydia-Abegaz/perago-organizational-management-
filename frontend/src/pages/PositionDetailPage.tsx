@@ -23,7 +23,7 @@ export const PositionDetailPage: React.FC = () => {
 
   useEffect(() => {
     if (id && typeof id === 'string') {
-      dispatch(fetchPositionById(Number(id)));
+      dispatch(fetchPositionById(id));
       dispatch(fetchPositionsTree());
     }
 
